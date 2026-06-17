@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="docker-compose.yml" />
+  </Folder>
+  <Project Path="ShopEZ.API Gateway/ShopEZ.API Gateway.csproj" Id="016b8c78-6849-4948-a35a-64aa3fbd8a5d" />
+  <Project Path="ShopEZ.CartService/ShopEZ.CartService.csproj" Id="0964929b-8349-46ed-87b9-fd8014b39600" />
+  <Project Path="ShopEZ.OrderService/ShopEZ.OrderService.csproj" Id="3f5e3c50-5728-4b45-809f-9a885de006cd" />
+  <Project Path="ShopEZ.ProductService/ShopEZ.ProductService.csproj" />
+  <Project Path="ShopEZ.UserService/ShopEZ.UserService.csproj" Id="df1854d6-5813-4f38-908b-85004c83cf53" />
+  <Project Path="tests/ShopEZ.CartService.Tests/ShopEZ.CartService.Tests.csproj" />
+  <Project Path="tests/ShopEZ.OrderService.Tests/ShopEZ.OrderService.Tests.csproj" />
+  <Project Path="tests/ShopEZ.ProductService.Tests/ShopEZ.ProductService.Tests.csproj" />
+  <Project Path="tests/ShopEZ.UserService.Tests/ShopEZ.UserService.Tests.csproj" />
+</Solution>

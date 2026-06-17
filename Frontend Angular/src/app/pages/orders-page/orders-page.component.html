@@ -1,0 +1,45 @@
+<main class="container pt-0 pb-4 pb-md-5">
+  <section class="card border-0 shadow-sm p-4 p-md-5 text-center home-hero hero-full-bleed mb-4">
+    <h1 class="display-6 fw-bold mb-3">Orders</h1>
+    <p class="mb-0 home-hero-subtext">{{ auth.isAdmin() ? 'Admin view: all customer orders.' : 'Your order history in one place.' }}</p>
+  </section>
+
+  @if (error) {
+    <div class="alert alert-danger">{{ error }}</div>
+  }
+
+  <div class="vstack gap-3">
+    @for (order of orders; track order.orderId) {
+      <article class="card border-0 shadow-sm p-3 checkout-summary-card order-history-card">
+        <div class="d-flex flex-column flex-md-row justify-content-between gap-2 mb-2">
+          <div>
+            <h2 class="h5 mb-1">Order #{{ order.orderId }}</h2>
+            @if (auth.isAdmin()) {
+              <p class="mb-0 small text-secondary">{{ order.orderDate | date:'medium' }} | {{ order.userName || ('User #' + order.userId) }} | {{ order.userEmail || 'Email unavailable' }}</p>
+            } @else {
+              <p class="mb-0 small text-secondary">{{ order.orderDate | date:'medium' }}</p>
+            }
+          </div>
+          <strong class="h5 mb-0">{{ order.totalAmount | shopCurrency }}</strong>
+        </div>
+        <div class="vstack gap-2">
+          @for (item of order.items; track item.productId) {
+            <div class="d-flex justify-content-between border-top pt-2">
+              <span>{{ item.productName }} x {{ item.quantity }}</span>
+              <strong>{{ item.lineTotal | shopCurrency }}</strong>
+            </div>
+          }
+        </div>
+      </article>
+    } @empty {
+      <div class="card border-0 shadow-sm p-4 text-center">
+        <h2 class="h5 mb-2">{{ loading ? 'Loading orders...' : 'No orders yet' }}</h2>
+        <p class="mb-3 text-secondary">{{ loading ? 'Please wait while we fetch your order timeline.' : 'Once you place an order, it will appear here with full details.' }}</p>
+        <div class="d-flex flex-column flex-sm-row gap-2 justify-content-center">
+          <a routerLink="/products" class="btn btn-primary">Browse Products</a>
+          <a routerLink="/cart" class="btn btn-outline-primary">Go to Cart</a>
+        </div>
+      </div>
+    }
+  </div>
+</main>

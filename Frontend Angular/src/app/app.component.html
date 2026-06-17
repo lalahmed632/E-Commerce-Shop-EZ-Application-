@@ -1,0 +1,122 @@
+<nav class="navbar navbar-expand-lg shadow-sm border-bottom sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" routerLink="/">
+      <span class="brand-mark" aria-hidden="true">SZ</span>
+      <span>ShopEZ</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end offcanvas-lg" tabindex="-1" id="mainNav" aria-labelledby="mainNavLabel">
+      <div class="offcanvas-header d-lg-none">
+        <h5 class="offcanvas-title" id="mainNavLabel">Menu</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body p-lg-0">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMobileMenu()">
+              <i class="bi bi-house-door"></i><span>Home</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/products" routerLinkActive="active" (click)="closeMobileMenu()">
+              <i class="bi bi-grid"></i><span>Products</span>
+            </a>
+          </li>
+          @if (auth.isLoggedIn()) {
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/orders" routerLinkActive="active" (click)="closeMobileMenu()">
+                <i class="bi bi-receipt"></i><span>Orders</span>
+              </a>
+            </li>
+          }
+          @if (auth.isAdmin()) {
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/admin/products" routerLinkActive="active" (click)="closeMobileMenu()">
+                <i class="bi bi-tools"></i><span>Admin</span>
+              </a>
+            </li>
+          }
+          <li class="nav-item">
+            <a class="nav-link nav-cart-icon position-relative" routerLink="/cart" routerLinkActive="active" aria-label="Cart" (click)="closeMobileMenu()">
+              <i class="bi bi-cart3"></i>
+              <span>Cart</span>
+              @if (cart.items$ | async; as cartItems) {
+                @if (cartCount(cartItems) > 0) {
+                  <span class="cart-count badge rounded-pill bg-primary position-absolute">{{ cartCount(cartItems) }}</span>
+                }
+              }
+            </a>
+          </li>
+          @if (!auth.isAdmin()) {
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/checkout" routerLinkActive="active" (click)="closeMobileMenu()">
+                <i class="bi bi-credit-card"></i><span>Checkout</span>
+              </a>
+            </li>
+          }
+          <li class="nav-item">
+            @if (auth.isLoggedIn()) {
+              <button class="nav-link border-0 bg-transparent" type="button" (click)="logout()">
+                <i class="bi bi-box-arrow-right"></i><span>Logout</span>
+              </button>
+            } @else {
+              <a class="nav-link" routerLink="/login" routerLinkActive="active" (click)="closeMobileMenu()">
+                <i class="bi bi-box-arrow-in-right"></i><span>Login</span>
+              </a>
+            }
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
+
+<footer class="site-footer mt-4">
+  <div class="container py-4">
+    <div class="row g-4 footer-top">
+      <div class="col-md-4">
+        <h2 class="footer-title h4 mb-2">ShopEZ</h2>
+        <p class="footer-text mb-0">A frontend e-commerce prototype to browse products, manage cart items, and simulate checkout.</p>
+      </div>
+      <div class="col-6 col-md-2">
+        <h3 class="h6 mb-2">Quick Links</h3>
+        <div class="d-flex flex-column gap-1 small footer-links">
+          <a routerLink="/" class="text-decoration-none">Home</a>
+          <a routerLink="/products" class="text-decoration-none">Products</a>
+          <a routerLink="/cart" class="text-decoration-none">Cart</a>
+          <a routerLink="/checkout" class="text-decoration-none">Checkout</a>
+          <a routerLink="/orders" class="text-decoration-none">Orders</a>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <h3 class="h6 mb-2">Contact</h3>
+        <p class="footer-text small mb-1"><i class="bi bi-envelope me-2"></i>support&#64;shopez.demo</p>
+        <p class="footer-text small mb-1"><i class="bi bi-telephone me-2"></i>+91 94905 94319</p>
+        <p class="footer-text small mb-0"><i class="bi bi-clock me-2"></i>Mon-Sat: 9AM - 8PM</p>
+      </div>
+      <div class="col-md-3">
+        <h3 class="h6 mb-2">Follow Us</h3>
+        <div class="d-flex gap-2">
+          <a href="https://www.instagram.com/" class="footer-social text-decoration-none" aria-label="Instagram" target="_blank"><i class="bi bi-instagram"></i></a>
+          <a href="https://www.facebook.com/" class="footer-social text-decoration-none" aria-label="Facebook" target="_blank"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.linkedin.com/" class="footer-social text-decoration-none" aria-label="LinkedIn" target="_blank"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 pt-3 mt-3">
+      <p class="mb-0 small">&copy; ShopEZ</p>
+    </div>
+  </div>
+</footer>
+
+<div id="toast-host" class="position-fixed bottom-0 end-0 p-3" style="z-index:1090;">
+  @for (message of toast.messages; track message.id) {
+    <div class="card p-2 shadow-sm mb-2 shopez-toast {{ message.categoryClass }}">
+      <p class="mb-0 small">{{ message.text }}</p>
+    </div>
+  }
+</div>

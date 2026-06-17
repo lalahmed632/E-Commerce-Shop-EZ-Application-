@@ -1,0 +1,20 @@
+<article class="card product-card {{ categoryClass() }}">
+  <img [src]="product.imageUrl" class="product-thumb" [alt]="product.name">
+  <div class="card-body d-flex flex-column">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <span class="category-pill">{{ product.category || 'General' }}</span>
+      <span class="price-tag">{{ product.price | shopCurrency }}</span>
+    </div>
+    <h2 class="h5 mb-2">{{ product.name }}</h2>
+    <p class="text-secondary small mb-3">{{ product.description.slice(0, 90) }}...</p>
+    <p class="small fw-semibold mb-3" [appStockStatus]="product.stock">
+      {{ product.stock > 0 ? product.stock + ' in stock' : 'Out of stock' }}
+    </p>
+    <div class="mt-auto d-flex gap-2">
+      <a [routerLink]="['/products', product.id]" class="btn btn-outline-primary btn-sm flex-fill">View</a>
+      <button type="button" class="btn btn-primary btn-sm flex-fill" [disabled]="product.stock <= 0" (click)="add.emit(product)">
+        {{ product.stock > 0 ? 'Add to Cart' : 'Out of Stock' }}
+      </button>
+    </div>
+  </div>
+</article>

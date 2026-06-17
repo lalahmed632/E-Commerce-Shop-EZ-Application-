@@ -1,0 +1,60 @@
+<main class="container pt-0 pb-4 pb-md-5">
+  <section class="card border-0 shadow-sm p-4 p-md-5 text-center home-hero hero-full-bleed mb-4 mb-md-5">
+    <h1 class="display-6 fw-bold mb-3">Products</h1>
+    <p class="mb-4 home-hero-subtext">Browse and add items to your cart</p>
+    <div class="d-flex justify-content-center">
+      <a routerLink="/cart" class="btn btn-outline-primary px-4">Go to Cart</a>
+    </div>
+  </section>
+
+  <section class="card p-3 p-md-4 mb-4 border-0 shadow-sm filter-panel-plain">
+    <div class="row g-3 align-items-center">
+      <div class="col-md-7">
+        <label for="search-input" class="form-label mb-1">Search Products</label>
+        <input type="search" id="search-input" class="form-control" placeholder="Search by product name" [(ngModel)]="searchTerm">
+      </div>
+      <div class="col-md-5">
+        <label for="category-select" class="form-label mb-1">Filter by Category</label>
+        <select id="category-select" class="form-select" [(ngModel)]="selectedCategory">
+          <option value="all">All Categories</option>
+          @for (category of categories(); track category) {
+            <option [value]="category">{{ category }}</option>
+          }
+        </select>
+      </div>
+    </div>
+  </section>
+
+  @if (!loadingError && filteredProducts().length === 0 && products.length > 0) {
+    <div id="product-empty" class="card border-0 shadow-sm p-3 mb-4">
+      <h2 class="h6 mb-2">No products match your filters</h2>
+      <p class="mb-3 text-secondary">Try clearing search text or switching category to see more items.</p>
+      <div class="d-flex flex-column flex-sm-row gap-2">
+        <button class="btn btn-primary btn-sm w-auto" type="button" (click)="searchTerm=''; selectedCategory='all'">Clear Filters</button>
+        <a routerLink="/" class="btn btn-outline-primary btn-sm w-auto">Back to Home</a>
+      </div>
+    </div>
+  }
+
+  @if (loadingError) {
+    <div id="product-empty" class="card border-0 shadow-sm p-3 mb-4">
+      <p class="mb-0">{{ loadingError }}</p>
+    </div>
+  }
+
+  <section id="product-grid" class="row g-4">
+    @for (product of filteredProducts(); track product.id) {
+      <div class="col-sm-6 col-lg-4">
+        <app-product-card [product]="product" (add)="addToCart($event)" />
+      </div>
+    } @empty {
+      @if (!loadingError && products.length === 0) {
+        <div class="col-12">
+          <div class="card border-0 shadow-sm p-4 text-center">
+            <p class="mb-0">Loading products...</p>
+          </div>
+        </div>
+      }
+    }
+  </section>
+</main>

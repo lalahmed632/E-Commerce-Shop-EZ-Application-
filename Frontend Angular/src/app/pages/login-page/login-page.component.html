@@ -1,0 +1,36 @@
+<main class="container pt-0 pb-4 pb-md-5">
+  <section class="card border-0 shadow-sm p-4 p-md-5 text-center home-hero hero-full-bleed mb-4">
+    <h1 class="display-6 fw-bold mb-3">Login</h1>
+    <p class="mb-0 home-hero-subtext">Use your ShopEZ API account to browse products and place orders.</p>
+  </section>
+
+  <section class="row justify-content-center">
+    <div class="col-md-7 col-lg-5">
+      <div class="card border-0 shadow-sm p-4 checkout-content-wrap">
+        @if (error) {
+          <div class="alert alert-danger">{{ error }}</div>
+        }
+        <form #loginForm="ngForm" (ngSubmit)="login()" novalidate autocomplete="off">
+          <div class="mb-3">
+            <label class="form-label" for="email">Email</label>
+            <input id="email" class="form-control" type="email" name="email" [(ngModel)]="email" required email autocomplete="off">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="password">Password</label>
+            <input id="password" class="form-control" type="password" name="password" [(ngModel)]="password" required autocomplete="new-password">
+          </div>
+          <button class="btn btn-primary w-100" type="submit" [disabled]="loginForm.invalid || busy">
+            {{ busy ? 'Signing in...' : 'Login' }}
+          </button>
+        </form>
+        <div class="d-flex justify-content-between mt-3 small">
+          <!-- <button class="btn btn-link p-0" type="button" (click)="useCustomerDemo()">Customer demo</button>
+          <button class="btn btn-link p-0" type="button" (click)="useAdminDemo()">Admin demo</button> -->
+          <div>
+                <a routerLink="/register">Create account</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

@@ -1,0 +1,29 @@
+<main class="container pt-0 pb-4 pb-md-5">
+  <section class="mb-4">
+    <div class="card border-0 shadow-sm p-4 p-md-5 text-center home-hero hero-full-bleed">
+      <h1 class="display-6 fw-bold mb-3">Shop Smarter, Faster, Easier</h1>
+      <p class="mb-4 home-hero-subtext">Discover amazing products, explore detailed views, manage your cart effortlessly, and enjoy a seamless checkout experience.</p>
+      <div class="d-flex flex-column flex-sm-row justify-content-center gap-2 mb-3">
+        <a routerLink="/products" class="btn btn-outline-primary">Browse Products</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-5">
+    <h2 class="h3 mb-2 text-center">Trending Products</h2>
+    <p class="text-center mb-4 trending-subtext">Check out the most popular items our customers love right now.</p>
+    <section id="featured-grid" class="row g-4">
+      @for (product of featuredProducts; track product.id) {
+        <div class="col-sm-6 col-lg-4">
+          <app-product-card [product]="product" (add)="addToCart($event)" />
+        </div>
+      } @empty {
+        <div class="col-12">
+          <div class="card border-0 shadow-sm p-4 text-center">
+            <p class="mb-0">{{ loadingError || 'Loading featured products...' }}</p>
+          </div>
+        </div>
+      }
+    </section>
+  </section>
+</main>

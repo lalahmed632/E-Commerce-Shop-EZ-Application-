@@ -1,0 +1,5 @@
+.order-history-card {
+  border: 1px solid rgba(67, 97, 238, 0.14) !important;
+  box-shadow: 0 14px 28px rgba(17, 28, 68, 0.12) !important;
+  border-radius: 1rem;
+}

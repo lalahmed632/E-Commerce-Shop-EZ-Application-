@@ -1,0 +1,43 @@
+<main class="container pt-0 pb-4 pb-md-5">
+  <section class="card border-0 shadow-sm p-4 p-md-5 text-center home-hero hero-full-bleed mb-4">
+    <h1 class="display-6 fw-bold mb-3">Create Account</h1>
+    <p class="mb-0 home-hero-subtext">New users are registered as Customers by the API.</p>
+  </section>
+
+  <section class="row justify-content-center">
+    <div class="col-md-7 col-lg-5">
+      <div class="card border-0 shadow-sm p-4 checkout-content-wrap">
+        @if (error) {
+          <div class="alert alert-danger">{{ error }}</div>
+        }
+        <form #registerForm="ngForm" (ngSubmit)="register()" novalidate autocomplete="off">
+          <div class="mb-3">
+            <label class="form-label" for="name">Name</label>
+            <input id="name" class="form-control" [class.is-invalid]="(nameRef.invalid && (nameRef.touched || submitted))" name="name" [(ngModel)]="name" #nameRef="ngModel" required minlength="2" maxlength="100" pattern="^[A-Za-z][A-Za-z\s]{1,99}$" autocomplete="off">
+            @if (nameRef.invalid && (nameRef.touched || submitted)) {
+              <div class="invalid-feedback d-block">Please enter a valid name (letters and spaces only).</div>
+            }
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="email">Email</label>
+            <input id="email" class="form-control" [class.is-invalid]="(emailRef.invalid && (emailRef.touched || submitted))" type="email" name="email" [(ngModel)]="email" #emailRef="ngModel" required email maxlength="150" pattern="^[A-Za-z0-9._%+-]{3,}@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$" autocomplete="off">
+            @if (emailRef.invalid && (emailRef.touched || submitted)) {
+              <div class="invalid-feedback d-block">Please enter a valid email address.</div>
+            }
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="password">Password</label>
+            <input id="password" class="form-control" [class.is-invalid]="(passwordRef.invalid && (passwordRef.touched || submitted))" type="password" name="password" [(ngModel)]="password" #passwordRef="ngModel" required minlength="8" maxlength="255" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).+" title="Use at least 8 characters with uppercase, lowercase, number, and special character." autocomplete="new-password">
+            @if (passwordRef.invalid && (passwordRef.touched || submitted)) {
+              <div class="invalid-feedback d-block">Password must be 8+ chars with uppercase, lowercase, number, and special character.</div>
+            }
+          </div>
+          <button class="btn btn-primary w-100" type="submit" [disabled]="registerForm.invalid || busy">
+            {{ busy ? 'Creating account...' : 'Register' }}
+          </button>
+        </form>
+        <p class="mb-0 mt-3 small">Already registered? <a routerLink="/login">Login</a></p>
+      </div>
+    </div>
+  </section>
+</main>

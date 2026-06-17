@@ -1,0 +1,86 @@
+<main class="container pt-0 pb-4 pb-md-5">
+  <section class="card border-0 shadow-sm p-4 p-md-5 text-center home-hero hero-full-bleed mb-4">
+    <h1 class="display-6 fw-bold mb-3">Admin Products</h1>
+    <p class="mb-0 home-hero-subtext">Create, update, and delete products through the Admin-only API endpoints.</p>
+  </section>
+
+  @if (message) {
+    <div class="alert alert-success">{{ message }}</div>
+  }
+  @if (error) {
+    <div class="alert alert-danger">{{ error }}</div>
+  }
+
+  <section class="card border-0 shadow-sm p-4 filter-panel-plain mb-4">
+    <h2 class="h5 mb-3">{{ editingId ? 'Update Product' : 'Create Product' }}</h2>
+    <form #productForm="ngForm" (ngSubmit)="save()" class="row g-3" novalidate>
+      <div class="col-md-6">
+        <label class="form-label">Name</label>
+        <input class="form-control" name="name" [(ngModel)]="form.name" required maxlength="150" pattern=".*\S.*">
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">Price</label>
+        <input class="form-control" type="number" name="price" [(ngModel)]="form.price" required min="0.01">
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">Stock</label>
+        <input class="form-control" type="number" name="stock" [(ngModel)]="form.stock" required min="0">
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Category</label>
+        <select class="form-select" name="category" [(ngModel)]="form.category" required>
+          <option value="Electronics">Electronics</option>
+          <option value="Fashion">Fashion</option>
+          <option value="Home">Home</option>
+          <option value="Fitness">Fitness</option>
+          <option value="Accessories">Accessories</option>
+        </select>
+      </div>
+      <div class="col-12">
+        <label class="form-label">Image URL</label>
+        <input class="form-control" name="imageUrl" [(ngModel)]="form.imageUrl" required maxlength="500" pattern=".*\S.*">
+      </div>
+      <div class="col-12">
+        <label class="form-label">Description</label>
+        <textarea class="form-control" rows="3" name="description" [(ngModel)]="form.description" required maxlength="2000" pattern=".*\S.*"></textarea>
+      </div>
+      <div class="col-12 d-flex gap-2">
+        <button class="btn btn-primary" type="submit" [disabled]="productForm.invalid || busy">{{ busy ? 'Saving...' : 'Save Product' }}</button>
+        <button class="btn btn-outline-primary" type="button" (click)="resetForm()">Clear</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="row g-4">
+    @for (product of products; track product.id) {
+      <div class="col-md-6 col-xl-4">
+        <article class="card border-0 shadow-sm p-3 product-card {{ categoryClass(product.category || 'General') }}">
+          <img [src]="product.imageUrl" class="product-thumb" [alt]="product.name">
+          <div class="card-body px-0 pb-0">
+            <div class="d-flex justify-content-between">
+              <h2 class="h5">{{ product.name }}</h2>
+              <strong>{{ cart.formatCurrency(product.price) }}</strong>
+            </div>
+            <p class="small text-secondary">{{ product.description }}</p>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span class="category-pill">{{ product.category || 'General' }}</span>
+              <span class="small fw-semibold mb-0">Stock: {{ product.stock }}</span>
+            </div>
+            <div class="d-flex gap-2">
+              <button class="btn btn-outline-primary btn-sm flex-fill" type="button" (click)="edit(product)">Edit</button>
+              <button class="btn btn-primary btn-sm flex-fill" type="button" [disabled]="busy" (click)="delete(product.id)">Delete</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    } @empty {
+      <div class="col-12">
+        <div class="card border-0 shadow-sm p-4 text-center">
+          <h2 class="h5 mb-2">No products available</h2>
+          <p class="mb-3 text-secondary">Create your first product using the form above to populate the catalog.</p>
+          <button class="btn btn-primary w-auto mx-auto" type="button" (click)="resetForm()">Create Product</button>
+        </div>
+      </div>
+    }
+  </section>
+</main>

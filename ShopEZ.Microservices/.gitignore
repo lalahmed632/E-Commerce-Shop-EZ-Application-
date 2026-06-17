@@ -1,0 +1,33 @@
+# Build artifacts
+**/bin/
+**/obj/
+**/out/
+**/TestResults/
+
+# Visual Studio / IDE
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# .NET local cache
+.dotnet-home/
+
+# Node / Angular
+Frontend Angular/node_modules/
+Frontend Angular/.angular/
+Frontend Angular/dist/
+Frontend Angular/coverage/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+
+# Temp / extracted docs
+_docx_extract/
+_tmp_problem4/
+_tmp_problem4.zip

@@ -1,0 +1,122 @@
+[
+    {
+        "id":  1,
+        "name":  "AeroTune Headphones",
+        "description":  "Wireless noise-canceling headphones with 40-hour battery life and immersive balanced sound for work, gaming, and travel.",
+        "price":  2999,
+        "image":  "images/Headphones.jpg",
+        "category":  "Electronics"
+    },
+    {
+        "id":  2,
+        "name":  "Nimbus Smartwatch",
+        "description":  "Track fitness goals, monitor heart rate, and sync notifications with a lightweight AMOLED smartwatch designed for daily use.",
+        "price":  1999,
+        "image":  "images/SmartWatch.jpg",
+        "category":  "Electronics"
+    },
+    {
+        "id":  3,
+        "name":  "UrbanTrail Sneakers",
+        "description":  "Breathable all-day sneakers featuring cushioned midsoles and slip-resistant grip, built for city walks and light workouts.",
+        "price":  3499,
+        "image":  "images/Sneakers.jpg",
+        "category":  "Fashion"
+    },
+    {
+        "id":  4,
+        "name":  "Comfy Knit Hoodie",
+        "description":  "Soft cotton-blend hoodie with a relaxed fit, ribbed cuffs, and dual-layer hood for cooler evenings and casual weekends.",
+        "price":  999,
+        "image":  "images/Hoodie.jpg",
+        "category":  "Fashion"
+    },
+    {
+        "id":  5,
+        "name":  "Lumina Desk Lamp",
+        "description":  "Minimal LED desk lamp with adjustable brightness levels and warm-to-cool temperature presets for focused study sessions.",
+        "price":  500,
+        "image":  "images/DesktopLamp.jpg",
+        "category":  "Home"
+    },
+    {
+        "id":  6,
+        "name":  "Stoneware Dinner Set",
+        "description":  "12-piece durable dinnerware set with matte finish and microwave-safe construction for everyday meals and hosting guests.",
+        "price":  1200,
+        "image":  "images/DinnerSet.jpg",
+        "category":  "Home"
+    },
+    {
+        "id":  7,
+        "name":  "CoreFlex Yoga Mat",
+        "description":  "High-grip, anti-slip yoga mat with extra cushioning and moisture-resistant texture to support yoga, Pilates, and stretching.",
+        "price":  340,
+        "image":  "images/YogaMat.jpg",
+        "category":  "Fitness"
+    },
+    {
+        "id":  8,
+        "name":  "PowerBand Resistance Kit",
+        "description":  "Five-level resistance band set with door anchor and handles, ideal for strength training routines at home or on the go.",
+        "price":  200,
+        "image":  "images/ResistantBand.jpg",
+        "category":  "Fitness"
+    },
+    {
+        "id":  9,
+        "name":  "TravelLite Backpack",
+        "description":  "Water-resistant commuter backpack with padded laptop compartment, hidden anti-theft pocket, and ergonomic shoulder straps.",
+        "price":  1100,
+        "image":  "images/Backpack.jpg",
+        "category":  "Accessories"
+    },
+    {
+        "id":  10,
+        "name":  "HydroFlow Steel Bottle",
+        "description":  "Double-wall insulated stainless steel bottle keeps beverages cold for 24 hours or hot for 12 hours with leak-proof cap.",
+        "price":  300,
+        "image":  "images/SteelBottle.jpg",
+        "category":  "Accessories"
+    },
+    {
+        "id":  11,
+        "name":  "PulseWave Earbuds",
+        "description":  "Compact true-wireless earbuds with clear voice pickup, deep bass tuning, and up to 24 hours of backup with the charging case.",
+        "price":  1299,
+        "image":  "images/PulseWaveEarBuds.jpg",
+        "category":  "Electronics"
+    },
+    {
+        "id":  12,
+        "name":  "StrideFlex Joggers",
+        "description":  "Stretch-fit daily wear joggers with breathable fabric, tapered ankle design, and comfort-first waistband for long use.",
+        "price":  899,
+        "image":  "images/StrideFlexJoggers.jpg",
+        "category":  "Fashion"
+    },
+    {
+        "id":  13,
+        "name":  "AuraGlow Table Light",
+        "description":  "Modern bedside table light with touch dimming, warm glow mode, and compact footprint for study desks and night stands.",
+        "price":  650,
+        "image":  "images/AuraGlow Table Light.jpg",
+        "category":  "Home"
+    },
+    {
+        "id":  14,
+        "name":  "GripPro Training Mat",
+        "description":  "Durable workout mat with textured anti-slip surface and medium cushioning, ideal for bodyweight sessions and yoga drills.",
+        "price":  420,
+        "image":  "images/GripPro Training Mat.jpg",
+        "category":  "Fitness"
+    },
+    {
+        "id":  15,
+        "name":  "TrailSip Travel Flask",
+        "description":  "Leak-resistant stainless travel flask designed for office and commute, with temperature retention and easy-clean finish.",
+        "price":  450,
+        "image":  "images/TrailSip Travel Flask.jpg",
+        "category":  "Accessories"
+    }
+]

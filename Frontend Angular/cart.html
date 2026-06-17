@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopEZ | Shopping Cart</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-white shadow-sm border-bottom sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">ShopEZ</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end offcanvas-lg" tabindex="-1" id="mainNav" aria-labelledby="mainNavLabel">
+        <div class="offcanvas-header d-lg-none">
+          <h5 class="offcanvas-title" id="mainNavLabel">Menu</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body p-lg-0">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html"><i class="bi bi-house-door"></i><span>Home</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="products.html"><i class="bi bi-grid"></i><span>Products</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-cart-icon position-relative active" aria-current="page" href="cart.html" aria-label="Cart">
+              <i class="bi bi-cart3"></i>
+              <span class="cart-count badge rounded-pill bg-primary position-absolute d-none">0</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="checkout.html"><i class="bi bi-credit-card"></i><span>Checkout</span></a>
+          </li>
+        </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-4 py-md-5">
+    <section class="card border-0 shadow-sm p-4 p-md-5 text-center home-hero mb-4 mb-md-5">
+      <h1 class="display-6 fw-bold mb-3">Your Shopping Cart</h1>
+      <p class="mb-4 home-hero-subtext">Review your picks and place your order with ease.</p>
+      <div class="d-flex justify-content-center">
+        <a href="products.html" class="btn btn-outline-primary px-4">Browse Products</a>
+      </div>
+    </section>
+
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <div id="empty-cart-state" class="card border-0 shadow-sm p-4 d-none">
+          <h2 class="h5">Your cart is empty</h2>
+          <p class="mb-3">Add products from the catalog to see them here.</p>
+          <a href="products.html" class="btn btn-primary w-auto">Browse Products</a>
+        </div>
+        <div id="cart-content-wrap" class="card border-0 shadow-sm p-3 p-md-4 cart-content-wrap">
+          <div id="cart-rows" class="vstack gap-3"></div>
+          <div class="d-flex justify-content-end pt-3">
+            <button id="clear-cart-btn" class="btn btn-outline-danger btn-sm">Clear Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="card border-0 shadow-sm p-4 order-summary-card">
+          <h2 class="h5 mb-3">Order Summary</h2>
+          <div class="d-flex justify-content-between mb-2">
+            <span>Subtotal</span>
+            <strong id="summary-subtotal">Rs 0.00</strong>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <span>Shipping</span>
+            <strong id="summary-shipping">Rs 0.00</strong>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-between mb-3">
+            <span class="fw-semibold">Total</span>
+            <strong id="summary-total" class="h5 mb-0">Rs 0.00</strong>
+          </div>
+          <a id="checkout-btn" href="checkout.html" class="btn btn-primary w-100">Proceed to Checkout</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer mt-4">
+    <div class="container py-4">
+      <div class="row g-4 footer-top">
+        <div class="col-md-4">
+          <h2 class="footer-title h4 mb-2">ShopEZ</h2>
+          <p class="footer-text mb-0">A frontend e-commerce prototype to browse products, manage cart items, and simulate checkout.</p>
+        </div>
+        <div class="col-6 col-md-2">
+          <h3 class="h6 mb-2">Quick Links</h3>
+          <div class="d-flex flex-column gap-1 small footer-links">
+            <a href="index.html" class="text-decoration-none">Home</a>
+            <a href="products.html" class="text-decoration-none">Products</a>
+            <a href="cart.html" class="text-decoration-none">Cart</a>
+            <a href="checkout.html" class="text-decoration-none">Checkout</a>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <h3 class="h6 mb-2">Contact</h3>
+          <p class="footer-text small mb-1"><i class="bi bi-envelope me-2"></i>support@shopez.demo</p>
+          <p class="footer-text small mb-1"><i class="bi bi-telephone me-2"></i>+91 94905 94319</p>
+          <p class="footer-text small mb-0"><i class="bi bi-clock me-2"></i>Mon-Sat: 9AM - 8PM</p>
+        </div>
+        <div class="col-md-3">
+          <h3 class="h6 mb-2">Follow Us</h3>
+          <div class="d-flex gap-2">
+            <a href="https://www.instagram.com/" class="footer-social text-decoration-none" aria-label="Instagram" target="_blank"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.facebook.com/" class="footer-social text-decoration-none" aria-label="Facebook" target="_blank"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.linkedin.com/" class="footer-social text-decoration-none" aria-label="LinkedIn" target="_blank"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 pt-3 mt-3">
+        <p class="mb-0 small">© ShopEZ 
+</p>
+       
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>
+
+
+
+

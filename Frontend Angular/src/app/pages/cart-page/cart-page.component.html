@@ -1,0 +1,76 @@
+<main class="container pt-0 pb-4 pb-md-5">
+  <section class="card border-0 shadow-sm p-4 p-md-5 text-center home-hero hero-full-bleed mb-4 mb-md-5">
+    <h1 class="display-6 fw-bold mb-3">Your Shopping Cart</h1>
+    <p class="mb-4 home-hero-subtext">Review your picks and place your order with ease.</p>
+    <div class="d-flex justify-content-center">
+      <a routerLink="/products" class="btn btn-outline-primary px-4">Browse Products</a>
+    </div>
+  </section>
+
+  <div class="row g-4">
+    <div class="col-lg-8">
+      @if (items.length === 0) {
+        <div id="empty-cart-state" class="card border-0 shadow-sm p-4">
+          <h2 class="h5 mb-2">Your cart is empty</h2>
+          <p class="mb-3 text-secondary">Looks like you have not added anything yet. Start with trending products and come back here to checkout.</p>
+          <div class="d-flex flex-column flex-sm-row gap-2">
+            <a routerLink="/products" class="btn btn-primary w-auto">Browse Products</a>
+            <a routerLink="/" class="btn btn-outline-primary w-auto">Back to Home</a>
+          </div>
+        </div>
+      } @else {
+        <div id="cart-content-wrap" class="card border-0 shadow-sm p-3 p-md-4 cart-content-wrap">
+          <div class="d-flex justify-content-end pb-3">
+            <button id="clear-cart-btn" class="btn btn-outline-danger btn-sm" (click)="clearCart()">Clear Cart</button>
+          </div>
+          <div id="cart-rows" class="vstack gap-3">
+            @for (item of items; track item.productId) {
+              <div class="card border-0 shadow-sm cart-item-card">
+                <div class="card-body py-3">
+                  <div class="row g-2 align-items-center">
+                    <div class="col-md-4 d-flex align-items-center gap-2">
+                      <img [src]="item.imageUrl" [alt]="item.name" class="line-item-image">
+                      <div class="fw-semibold">{{ item.name }}</div>
+                    </div>
+                    <div class="col-md-2 text-md-end">{{ item.price | shopCurrency }}</div>
+                    <div class="col-md-2 d-flex justify-content-md-center">
+                      <div class="qty-control">
+                        <button type="button" class="btn btn-sm btn-outline-dark qty-btn" (click)="decrease(item)">-</button>
+                        <input type="number" min="1" [max]="item.stock" class="form-control form-control-sm qty-input quantity-input" [value]="item.quantity" (change)="updateQuantity(item.productId, $any($event.target).value)">
+                        <button type="button" class="btn btn-sm btn-outline-dark qty-btn" (click)="increase(item)">+</button>
+                      </div>
+                    </div>
+                    <div class="col-md-2 text-md-end fw-semibold">{{ item.price * item.quantity | shopCurrency }}</div>
+                    <div class="col-md-2 text-md-end">
+                      <button type="button" class="btn btn-sm btn-outline-danger remove-item-btn" (click)="remove(item.productId)">Remove</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card border-0 shadow-sm p-4 order-summary-card">
+        <h2 class="h5 mb-3">Order Summary</h2>
+        <div class="d-flex justify-content-between mb-2">
+          <span>Subtotal</span>
+          <strong>{{ summary().subtotal | shopCurrency }}</strong>
+        </div>
+        <div class="d-flex justify-content-between mb-2">
+          <span>Shipping</span>
+          <strong>{{ summary().shipping | shopCurrency }}</strong>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-between mb-3">
+          <span class="fw-semibold">Total</span>
+          <strong class="h5 mb-0">{{ summary().total | shopCurrency }}</strong>
+        </div>
+        <button type="button" class="btn btn-primary w-100" [disabled]="items.length === 0" (click)="proceedToCheckout()">Proceed to Checkout</button>
+      </div>
+    </div>
+  </div>
+</main>
